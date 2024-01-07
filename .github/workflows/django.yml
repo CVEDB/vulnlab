@@ -31,13 +31,11 @@ jobs:
       with:
         python-version: 3.8
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+    - name: Build Docker image
+      run: docker build -t my-django-app .
 
-    - name: Apply database migrations
-      run: python manage.py migrate
+    - name: Run Docker containers
+      run: docker run -e DJANGO_SETTINGS_MODULE=bnmc.settings -p 8000:8000 my-django-app python manage.py runserver 0.0.0.0:8000
 
     - name: Run tests
-      run: python manage.py test
+      run: docker run my-django-app python manage.py test
