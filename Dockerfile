@@ -13,11 +13,11 @@ COPY . /app
 
 # Install system-level dependencies for pycairo
 RUN apt-get update && \
-    apt-get install -y libcairo2 libcairo2-dev && \
+    apt-get install -y libcairo2 libcairo2-dev libjpeg-dev zlib1g-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Install any needed packages specified in requirements.txt
+# Upgrade pip and install required Python packages
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
