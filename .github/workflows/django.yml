@@ -35,7 +35,7 @@ jobs:
       run: docker build -t my-django-app .
 
     - name: Run Docker containers
-      run: docker run -e DJANGO_SETTINGS_MODULE=myproject.settings -p 8000:8000 my-django-app python manage.py runserver 0.0.0.0:8000
+      run: docker run -e DJANGO_SETTINGS_MODULE=bnmc.settings -p 8000:8000 my-django-app python manage.py runserver 0.0.0.0:8000
 
     - name: Run tests
       run: docker run my-django-app python manage.py test
